@@ -1,0 +1,548 @@
+<html lang="zh-TW"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>室內無煙BBQ - 免生火免等待</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#E67E22', // 烧烤橙
+                        secondary: '#3498DB',
+                        dark: '#34495E',
+                        light: '#F8F9FA',
+                        line: '#06C755' // LINE品牌绿色
+                    },
+                    fontFamily: {
+                        sans: ['Noto Sans TC', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .text-shadow {
+                text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            }
+            .form-message {
+                @apply py-3 px-4 rounded-lg mb-4 text-center font-medium transition-all duration-300;
+            }
+            .success-message {
+                @apply bg-green-100 text-green-800 border border-green-200;
+            }
+            .error-message {
+                @apply bg-red-100 text-red-800 border border-red-200;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap" rel="stylesheet">
+</head>
+<body class="font-sans text-dark bg-light">
+    <!-- 导航栏 -->
+    <nav id="navbar" class="fixed w-full bg-white/90 backdrop-blur-sm shadow-md z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center space-x-2">
+                <i class="fa fa-fire text-primary text-2xl"></i>
+                <span class="text-xl font-bold text-primary">木人艸 x 室內無煙BBQ</span>
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#about" class="hover:text-primary transition-colors">關於我們</a>
+                <a href="#cases" class="hover:text-primary transition-colors">活動案例</a>
+                <a href="#faq" class="hover:text-primary transition-colors">常見問題</a>
+                <a href="#booking" class="hover:text-primary transition-colors">預約</a>
+            </div>
+            <button class="md:hidden text-dark text-xl" id="menu-toggle">
+                <i class="fa fa-bars"></i>
+            </button>
+        </div>
+        <!-- 移动端菜单 -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full">
+            <div class="container mx-auto px-4 py-3 flex flex-col space-y-3">
+                <a href="#about" class="py-2 hover:text-primary transition-colors">關於我們</a>
+                <a href="#cases" class="py-2 hover:text-primary transition-colors">活動案例</a>
+                <a href="#faq" class="py-2 hover:text-primary transition-colors">常見問題</a>
+                <a href="#booking" class="py-2 hover:text-primary transition-colors">預約</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 英雄区 -->
+    <header class="relative h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/5c47b47c50884efa94b329afdd6c6a1d~tplv-a9rns2rl98-image.image?rcl=20250819132901E0666631A64541385B59&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1756186142&amp;x-signature=S42OM1zQUcKxQRVXftn3%2FBoVfVE%3D" alt="丰盛的BBQ餐食摆台" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-dark/50"></div>
+        </div>
+        <div class="container mx-auto px-4 z-10 text-center text-white">
+            <h1 class="text-[clamp(2.5rem,6vw,4.5rem)] font-bold mb-6 text-shadow leading-tight">
+                室內無煙BBQ<br>免生火免等待
+            </h1>
+            <p class="text-[clamp(1.1rem,2vw,1.5rem)] mb-10 max-w-2xl mx-auto text-shadow">
+                想辦室內烤肉派對？專人預烤 + 保溫呈現，輕鬆享受美味！
+            </p>
+            <a href="#booking" class="inline-block bg-primary hover:bg-primary/90 text-white font-bold py-3 px-8 rounded-full text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                立即預約派對
+            </a>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-white animate-bounce">
+            <a href="#about" class="text-3xl">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- 关于我们 -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">關於我們的室內無煙BBQ</h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="order-2 md:order-1">
+                    <h3 class="text-2xl font-semibold mb-4 text-dark">全新的室內烤肉體驗</h3>
+                    <p class="text-lg mb-4 leading-relaxed">
+                        不用再擔心戶外烤肉遇到的天氣問題，也不用忍受油煙味和生火的麻煩。我們提供專業的室內無煙BBQ服務，讓您在舒適的室內環境中，盡情享受烤肉的美味。
+                    </p>
+                    <p class="text-lg mb-6 leading-relaxed">
+                        所有烤肉都由我們的專業師傅提前精心烤制，現場以保溫燈維持最佳溫度與口感，讓您和親朋好友到場即可享用熱騰騰的美味烤肉，省去漫長的等待時間。無論是小型聚會還是40人以上的大型活動，我們都能完美應對。
+                    </p>
+                    <div class="flex flex-wrap gap-3">
+                        <div class="flex items-center">
+                            <i class="fa fa-check-circle text-primary text-xl mr-2"></i>
+                            <span>無油煙干擾</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa fa-check-circle text-primary text-xl mr-2"></i>
+                            <span>免自行生火</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa fa-check-circle text-primary text-xl mr-2"></i>
+                            <span>即到即享用</span>
+                        </div>
+                        <div class="flex items-center">
+                            <i class="fa fa-check-circle text-primary text-xl mr-2"></i>
+                            <span>可容納40+人</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2 rounded-xl overflow-hidden shadow-xl transform hover:scale-[1.02] transition-transform duration-300">
+                    <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/66813b28d27849fdbd6f63a3b29839aa~tplv-a9rns2rl98-image.image?rcl=20250819132940AFB1B0DB4FAD6505202C&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1756186181&amp;x-signature=c4zbcAN3yfVZJs5r%2FWi89KvCMsk%3D" alt="室内无烟BBQ环境" class="w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 活动案例 -->
+    <section id="cases" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">活動案例展示</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-4"></div>
+                <p class="text-lg max-w-2xl mx-auto">我們成功為各種人數規模提供室內無煙BBQ服務，從40人到80人活動皆可勝任</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <!-- 案例1：40人活動 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="relative overflow-hidden h-60 flex-shrink-0">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/d95c29fd483c430dafca57b2bc61a3aa~tplv-a9rns2rl98-image.image?rcl=202508221118065151C4FD9F450F0AF337&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1756437491&amp;x-signature=TGTlPZ3bIOnrW2VHfzzelwNvgew%3D" alt="40人活動" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                </div>
+                
+                <!-- 案例2：50人活動 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="relative overflow-hidden h-60 flex-shrink-0">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/fdb0f749fa5a43388dcf38dc5b724f0d~tplv-a9rns2rl98-image.image?rcl=20250822111841FDD0802D4A348B1AFF47&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1756437525&amp;x-signature=l%2B3a77KjSjgwgIGne8vftYOBLho%3D" alt="50人活動" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                </div>
+                
+                <!-- 案例3：60人活動 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300 border-2 border-primary flex flex-col">
+                    <div class="relative overflow-hidden h-60 flex-shrink-0">
+                        <img src="https://p3-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/5080e9b78a88490298d5a3d28725f9e7~tplv-a9rns2rl98-image.image?rcl=202508221121588375FD15E87FAF0816D0&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1756437722&amp;x-signature=6yUQQ9txO5caSj77mqJmCol0lG8%3D" alt="60人活動" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <!-- 移除了60人活动的文字与按钮 -->
+                </div>
+                
+                <!-- 案例4：80人活動 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300 flex flex-col">
+                    <div class="relative overflow-hidden h-60 flex-shrink-0">
+                        <img src="https://p9-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/code_assistant/65d5a5ce47eb43e48344b1828d404bdf~tplv-a9rns2rl98-image.image?rcl=2025081914485024D3D1E694521D1144EE&amp;rk3s=8e244e95&amp;rrcfp=e75484ac&amp;x-expires=1756190932&amp;x-signature=OFUdF%2BhkG3%2Bi9JOcboRyXV3vdxM%3D" alt="80人活動" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <!-- 移除了80人活动的文字与按钮 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 常见问题FAQ -->
+    <section id="faq" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">常見問題</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-4"></div>
+                <p class="text-lg max-w-2xl mx-auto">關於室內無煙BBQ的常見疑問解答</p>
+            </div>
+            
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- FAQ项目1 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100 transition-colors" data-target="faq1">
+                        <span class="font-semibold text-lg">Q1｜什麼是「室內無煙 BBQ」？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq1" class="faq-content hidden p-5 bg-white border-t border-gray-200">
+                        <p>由專業廚務團隊於合格廚房先行烤製食材；活動現場不進行烹調，採商用保溫燈與保溫設備維持適溫與口感，兼顧熱度與低氣味，適合辦公室與各類室內空間。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目2 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100 transition-colors" data-target="faq2">
+                        <span class="font-semibold text-lg">Q2｜適合哪些場合？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq2" class="faq-content hidden p-5 bg-white border-t border-gray-200">
+                        <p>企業尾牙/節慶、團隊慶功、招商說明會中場餐敘、員工日、社區活動與小型發表會等。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目3 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100 transition-colors" data-target="faq3">
+                        <span class="font-semibold text-lg">Q3｜一次可服務多少人？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq3" class="faq-content hidden p-5 bg-white border-t border-gray-200">
+                        <p>目前方案以 60 人起服務。可依人數擴增餐檯、人力與出餐節奏；更大規模之活動亦可評估規劃，建議提前溝通以利動線與備餐安排。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目4 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100 transition-colors" data-target="faq4">
+                        <span class="font-semibold text-lg">Q4｜是否使用明火？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq4" class="faq-content hidden p-5 bg-white border-t border-gray-200">
+                        <p>現場不使用明火，亦不執行煎、烤、炸等加熱作業；僅以保溫燈與保溫設備維持餐食溫度。所有電器依場地用電規範配置，並備有滅火器、防火毯與地面防護。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目5 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100 transition-colors" data-target="faq5">
+                        <span class="font-semibold text-lg">Q5｜含酒精飲品可加購嗎？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq5" class="faq-content hidden p-5 bg-white border-t border-gray-200">
+                        <p>可依公司政策與場地規範提供；亦有無酒精特調、氣泡飲與冷熱飲料吧（可選乾冰特效）。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目6 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100 transition-colors" data-target="faq6">
+                        <span class="font-semibold text-lg">Q6｜預訂要提前多久？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq6" class="faq-content hidden p-5 bg-white border-t border-gray-200">
+                        <p>建議 1~2週以上；旺季（中秋/年末）越早越好。臨時需求可來訊，我們會快速評估資源。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目7 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100 transition-colors" data-target="faq7">
+                        <span class="font-semibold text-lg">Q7｜進撤場需要多久？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq7" class="faq-content hidden p-5 bg-white border-t border-gray-200">
+                        <p>一般進場佈置約 60–120 分鐘；撤場 45–60 分鐘（視規模調整）。</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ项目8 -->
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                    <button class="faq-toggle w-full flex justify-between items-center p-5 text-left bg-gray-50 hover:bg-gray-100 transition-colors" data-target="faq8">
+                        <span class="font-semibold text-lg">Q8｜我該準備哪些資訊？</span>
+                        <i class="fa fa-chevron-down text-primary transition-transform duration-300"></i>
+                    </button>
+                    <div id="faq8" class="faq-content hidden p-5 bg-white border-t border-gray-200">
+                        <p>日期與服務時段、活動地點/樓層與電梯狀況、預估人數、預算區間、是否有大樓報備需求。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 预约表单 -->
+    <section id="booking" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-[clamp(1.8rem,4vw,2.5rem)] font-bold mb-4">預約室內BBQ派對</h2>
+                <div class="w-20 h-1 bg-primary mx-auto mb-4"></div>
+                <p class="text-lg max-w-2xl mx-auto">無論是小型聚會還是40人以上大型活動，我們都能提供完美服務</p>
+            </div>
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-xl p-6 md:p-8">
+                <!-- 表单消息显示区域 -->
+                <div id="form-message" class="hidden"></div>
+                
+                <form id="booking-form" action="https://formspree.io/f/movloaov" method="POST" accept-charset="UTF-8" class="space-y-5">
+                    <div>
+                        <label for="name" class="block text-gray-700 font-medium mb-2">姓名 *</label>
+                        <input type="text" id="name" name="name" required="" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
+                    </div>
+                    <div>
+                        <label for="phone" class="block text-gray-700 font-medium mb-2">電話 *</label>
+                        <input type="tel" id="phone" name="phone" required="" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
+                    </div>
+                    <div>
+                        <label for="people" class="block text-gray-700 font-medium mb-2">參加人數 *</label>
+                        <input type="number" id="people" name="people" required="" inputmode="numeric" min="1" max="2000" placeholder="請輸入參加總人數" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
+                    </div>
+                    <div>
+                        <label for="budget" class="block text-gray-700 font-medium mb-2">預算 *</label>
+                        <select id="budget" name="budget" required="" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
+                            <option value="">請選擇預算範圍</option>
+                            <option value="20000-30000">20000-30000元</option>
+                            <option value="30000-50000">30000-50000元</option>
+                            <option value="50000以上">50000元以上</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="type" class="block text-gray-700 font-medium mb-2">活動類型 *</label>
+                        <select id="type" name="type" required="" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition">
+                            <option value="">請選擇活動類型</option>
+                            <option value="private">私人派對</option>
+                            <option value="company">公司團建</option>
+                            <option value="birthday">生日慶典</option>
+                            <option value="anniversary">周年慶典</option>
+                            <option value="friend">朋友聚會</option>
+                            <option value="other">其他活動</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="note" class="block text-gray-700 font-medium mb-2">備註</label>
+                        <textarea id="note" name="note" rows="3" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition" placeholder="請告訴我們您的特殊需求或疑問..."></textarea>
+                    </div>
+                    <div class="pt-2">
+                        <button type="submit" class="w-full bg-primary hover:bg-primary/90 text-white font-bold py-3 px-6 rounded-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                            提交預約申請
+                        </button>
+                    </div>
+                    <!-- 隐藏字段 -->
+                    <input type="hidden" name="_subject" value="【木人艸】室內無煙BBQ預約（網站）">
+                    <input type="hidden" name="page_url" value="">
+                    <!-- 蜜罐字段 -->
+                    <input type="text" name="company" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;">
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="bg-dark text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <i class="fa fa-fire text-primary text-2xl"></i>
+                    <span class="text-xl font-bold">木人艸 × 室內無煙BBQ</span>
+                </div>
+                <p class="mb-4 max-w-md mx-auto text-sm">
+                    感謝造訪，期待為您打造美味派對。無論是小型聚會還是40人以上大型活動，我們都能提供最優質的室內BBQ體驗。
+                </p>
+                <div class="flex justify-center space-x-5 mb-4">
+                    <!-- Facebook图标 -->
+                    <a href="https://www.facebook.com/muzentsao/?locale=zh_TW?utm_source=site_footer&amp;utm_medium=icon&amp;utm_campaign=social" target="_blank" rel="noopener" class="text-white hover:text-primary transition-colors" aria-label="前往 Facebook：木人艸">
+                        <i class="fa fa-facebook-square text-xl"></i>
+                    </a>
+                    <!-- Instagram图标 -->
+                    <a href="https://www.instagram.com/muzentsaocatering/?utm_source=site_footer&amp;utm_medium=icon&amp;utm_campaign=social" target="_blank" rel="noopener" class="text-white hover:text-primary transition-colors" aria-label="前往 Instagram：木人艸">
+                        <i class="fa fa-instagram text-xl"></i>
+                    </a>
+                    <!-- Line图标 -->
+                    <a href="https://lin.ee/GDoyPqd?utm_source=site_footer&amp;utm_medium=icon&amp;utm_campaign=social" onclick="try{window.location='line://ti/p/@muzentsao?utm_source=site_footer&amp;utm_medium=icon&amp;utm_campaign=social';setTimeout(function(){},1000);}catch(e){}" target="_blank" rel="noopener" class="text-white hover:text-line transition-colors" aria-label="加入 LINE：木人艸">
+                        <i class="fa fa-comment text-xl"></i>
+                    </a>
+                </div>
+                
+                <!-- 公司資訊 -->
+                <div class="py-3 my-3 text-sm">
+                    <div class="mb-2 md:mb-3">
+                        <!-- 地址链接 -->
+                        <a href="https://maps.google.com/?q=台北市士林區後港街185號4樓?utm_source=site_footer&amp;utm_medium=link&amp;utm_campaign=contact" target="_blank" rel="noopener" aria-label="開啟 Google 地圖：台北市士林區後港街185號4樓" class="hover:text-primary transition-colors">
+                            地址｜ 台北市士林區後港街185號4樓（點擊開啟 Google 地圖）
+                        </a>
+                    </div>
+                    <div>
+                        <!-- 电话链接 -->
+                        <span>電話｜ </span>
+                        <a href="tel:+886228832113" aria-label="撥打電話：02 2883 2113" class="hover:text-primary transition-colors">
+                            02 2883 2113
+                        </a>
+                        <span>（點擊可直接撥號）</span>
+                    </div>
+                </div>
+                
+                <div class="text-gray-400 text-xs">
+                    © 2023 室內無煙BBQ. 保留所有權利.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 返回顶部按钮 -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-primary text-white w-10 h-10 rounded-full flex items-center justify-center shadow-lg transform transition-transform duration-300 translate-y-20 opacity-0">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <script>
+        // 移动菜单切换
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('py-2');
+                navbar.classList.remove('py-3');
+                backToTop.classList.remove('translate-y-20', 'opacity-0');
+                backToTop.classList.add('translate-y-0', 'opacity-100');
+            } else {
+                navbar.classList.add('py-3');
+                navbar.classList.remove('py-2');
+                backToTop.classList.add('translate-y-20', 'opacity-0');
+                backToTop.classList.remove('translate-y-0', 'opacity-100');
+            }
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                // 关闭移动菜单（如果打开）
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // 返回顶部
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // FAQ 折叠功能
+        document.querySelectorAll('.faq-toggle').forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const targetId = toggle.getAttribute('data-target');
+                const targetContent = document.getElementById(targetId);
+                const icon = toggle.querySelector('i');
+                
+                // 切换当前FAQ的显示状态
+                targetContent.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+                
+                // 关闭其他打开的FAQ
+                document.querySelectorAll('.faq-content').forEach(content => {
+                    if (content.id !== targetId && !content.classList.contains('hidden')) {
+                        content.classList.add('hidden');
+                        const otherIcon = document.querySelector(`[data-target="${content.id}"] i`);
+                        otherIcon.classList.remove('rotate-180');
+                    }
+                });
+            });
+        });
+
+        // 表单提交处理
+        const bookingForm = document.getElementById('booking-form');
+        const formMessage = document.getElementById('form-message');
+        
+        bookingForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // 清空之前的消息
+            formMessage.classList.add('hidden');
+            
+            // 获取表单元素
+            const pageUrlInput = bookingForm.querySelector('input[name="page_url"]');
+            const companyInput = bookingForm.querySelector('input[name="company"]');
+            
+            // 设置当前页面URL
+            pageUrlInput.value = window.location.href;
+            
+            // 检查蜜罐字段
+            if (companyInput.value.trim() !== '') {
+                showMessage('送出失敗，請稍後再試', 'error');
+                return;
+            }
+            
+            // 收集表单数据
+            const formData = new FormData(bookingForm);
+            
+            try {
+                // 发送表单数据
+                const response = await fetch(bookingForm.action, {
+                    method: bookingForm.method,
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    },
+                    mode: 'cors'
+                });
+                
+                if (response.ok) {
+                    // 提交成功
+                    showMessage('已收到您的預約，我們將於 1 個工作日內與您聯繫', 'success');
+                    bookingForm.reset(); // 清空表单
+                } else {
+                    // 提交失败
+                    throw new Error('提交失敗');
+                }
+            } catch (error) {
+                showMessage('送出失敗，請改用電話 02-2883-2113', 'error');
+                console.error('表單提交錯誤:', error);
+            }
+        });
+        
+        // 显示消息函数
+        function showMessage(text, type) {
+            formMessage.textContent = text;
+            formMessage.classList.remove('hidden', 'success-message', 'error-message');
+            formMessage.classList.add('form-message', type === 'success' ? 'success-message' : 'error-message');
+            
+            // 滚动到消息位置
+            formMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    </script>
+    
+    </body></html>
+    
